@@ -15,10 +15,13 @@ const Header = () => {
 export default Header;
 
 const Container = styled.header`
-  margin: 0 auto;
   display: flex;
   align-items: center;
-  width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  min-width: 375px;
+  max-width: 800px;
+  width: 100%;
   height: 80px;
   color: #333;
 
