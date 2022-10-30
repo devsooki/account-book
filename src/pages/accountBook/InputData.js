@@ -1,20 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const InputData = () => {
+  const [income, setIncome] = useState(null)
+  const [expense, setExpense] = useState(null)
+  const [saving, setSaving] = useState(null)
+
+  const onChange = (e, type) => {
+    const {
+      target: { value }
+    } = e
+    const onlyNumber = value.replace(/[^0-9]/g, '')
+
+    if (type === 'income') {
+      setIncome(onlyNumber)
+    } else if (type === 'expense') {
+      setExpense(onlyNumber)
+    } else if (type === 'saving') {
+      setSaving(onlyNumber)
+    }
+  }
+
   return (
     <Container>
       <InputContent>
         <b>수입</b>
-        <Input />
+        <Input 
+          value={income}
+          onChange={e => onChange(e, 'income')}
+          placeholder={0}
+        />
       </InputContent>
       <InputContent>
         <b>지출</b>
-        <Input />
+        <Input 
+          value={expense}
+          onChange={e => onChange(e, 'expense')}
+          placeholder={0}
+        />
       </InputContent>
       <InputContent>
         <b>저축</b>
-        <Input />
+        <Input 
+          value={saving}
+          onChange={e => onChange(e, 'saving')}
+          placeholder={0}
+        />
       </InputContent>
     </Container>
   )
