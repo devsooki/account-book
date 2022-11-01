@@ -27,6 +27,8 @@ const InputData = () => {
     const newAccountBook = { ...prevAccountBook, [createDateKey(date)]: {date: createDateKey(date), type: type, price: price} };
 
     saveLocalStorage('accountBook', newAccountBook)
+    setType('')
+    setPrice(null)
   }
 
   return (

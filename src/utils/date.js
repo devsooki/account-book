@@ -1,3 +1,21 @@
+export const getPrevMonth = date => {
+  const now = date.getMonth();
+  const newDate = new Date(date);
+
+  newDate.setMonth(now - 1);
+
+  return newDate;
+}
+
+export const getNextMonth = date => {
+  const now = date.getMonth();
+  const newDate =  new Date(date);
+
+  newDate.setMonth(now + 1);
+
+  return newDate;
+}
+
 export const createDateKey = date => {
   return (
     String(date.getFullYear()) +
