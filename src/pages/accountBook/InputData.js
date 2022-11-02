@@ -5,18 +5,18 @@ import { createDateKey } from 'utils/date'
 import { loadLocalStorage, saveLocalStorage } from 'utils/localstorage'
 
 const InputData = () => {
-  const [type, setType] = useState('')
+  const [content, setConent] = useState('')
   const [price, setPrice] = useState(null)
-  const [isSelect, setIsSelect] = useState(false)
-  const [select, setSelect] = useState(OPTIONS[0].name)
+  const [isType, setIsType] = useState(false)
+  const [type, setType] = useState(OPTIONS[0])
 
-  const onClickIsSelect = () => {
-    setIsSelect(!isSelect)
+  const onClickIsType = () => {
+    setIsType(!isType)
   }
 
-  const onClickSelect = select => {
-    setSelect(select)
-    setIsSelect(!isSelect)
+  const onClickSelect = type => {
+    setType(type)
+    setIsType(!isType)
   }
 
   const onChange = (e, type) => {
@@ -25,8 +25,8 @@ const InputData = () => {
     } = e
     const onlyNumber = value.replace(/[^0-9]/g, '')
 
-    if (type === 'type') {
-      setType(value)
+    if (type === 'content') {
+      setConent(value)
     } else if (type === 'price') {
       setPrice(onlyNumber)
     }
@@ -35,41 +35,45 @@ const InputData = () => {
   const onClickSave = () => {
     const date = new Date()
     const prevAccountBook = loadLocalStorage('accountBook');
-    const newAccountBook = { ...prevAccountBook, [createDateKey(date)]: {date: createDateKey(date), type: type, price: price} };
+    const newAccountBook = { 
+      ...prevAccountBook, 
+      [createDateKey(date)]: {date: createDateKey(date), type: type.name, content: content, price: price} 
+    };
 
     saveLocalStorage('accountBook', newAccountBook)
-    setType('')
+    setConent('')
     setPrice(null)
+    setType(OPTIONS[0])
   }
 
   return (
     <Container>
       <InputContent>
-        <SelectContainer>
-          <span onClick={onClickIsSelect}>
-            {select}&nbsp;&nbsp;🔽
+        <TypeContainer>
+          <span onClick={onClickIsType}>
+            {type.name}&nbsp;&nbsp;🔽
           </span>
 
           {
-            isSelect && (
-              <SelectContent>
+            isType && (
+              <TypeContent>
                 {OPTIONS.map(option => (
                   <li
                     key={option.value}
                     value={option.value}
-                    onClick={()=>onClickSelect(option.name)}
+                    onClick={()=>onClickSelect(option)}
                   >
                     {option.name}
                   </li>
                 ))}
-              </SelectContent>
+              </TypeContent>
             )
           }
-        </SelectContainer>
+        </TypeContainer>
         <Input 
-          name="type"
-          value={type}
-          onChange={e => onChange(e, 'type')}
+          name="content"
+          value={content}
+          onChange={e => onChange(e, 'content')}
           placeholder="항목을 입력해주세요."
         />
         <Input 
@@ -102,16 +106,20 @@ const InputContent = styled.div`
   align-items: center;
   margin-bottom: 10px;
 `
-const SelectContainer = styled.div`
+const TypeContainer = styled.div`
   position: relative;
   margin-right: 10px;
-  padding: 10px;
   font-size: 13px;
   border: 1px solid #ddd;
   border-radius: 10px;
   cursor: pointer;
+
+  span {
+    display: block;
+    padding: 10px;
+  }
 `
-const SelectContent = styled.ul`
+const TypeContent = styled.ul`
   position: absolute;
   top: 40px; left: 5px;
   width: 65px;
@@ -142,7 +150,7 @@ const Input = styled.input`
   &:last-child {
     margin-right: 0;
   }
-  &[name="type"] {
+  &[name="content"] {
     flex: 1;
   }
   &[name="price"] {
