@@ -14,6 +14,11 @@ const InputData = () => {
     setIsSelect(!isSelect)
   }
 
+  const onClickSelect = select => {
+    setSelect(select)
+    setIsSelect(!isSelect)
+  }
+
   const onChange = (e, type) => {
     const {
       target: { value }
@@ -52,6 +57,7 @@ const InputData = () => {
                   <li
                     key={option.value}
                     value={option.value}
+                    onClick={()=>onClickSelect(option.name)}
                   >
                     {option.name}
                   </li>
