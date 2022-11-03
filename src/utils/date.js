@@ -16,10 +16,18 @@ export const getNextMonth = date => {
   return newDate;
 }
 
-export const createDateKey = date => {
-  return (
-    String(date.getFullYear()) +
-    String(date.getMonth() + 1) +
-    String(date.getDate() < 10 ? `0${date.getDate()}` : date.getDate())
-  );
+export const createDateKey = (date, type) => {
+
+  if (type === 'key') {
+    return (
+      String(date.getFullYear()) +
+      String(date.getMonth() + 1)
+    );
+  } else {
+    return (
+      String(date.getFullYear()) +
+      String(date.getMonth() + 1) + 
+      String(date.getDate() < 10 ? `0${date.getDate()}` : date.getDate())
+    )
+  }
 };

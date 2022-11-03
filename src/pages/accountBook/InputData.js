@@ -33,16 +33,18 @@ const InputData = () => {
   }
   
   const onClickSave = () => {
-    const date = new Date()
-    const prevAccountBook = loadLocalStorage('accountBook');
-    const newAccountBook = { 
-      ...prevAccountBook, 
-      [createDateKey(date)]: {date: createDateKey(date), type: type.name, content: content, price: price} 
-    };
+    const date = new Date();
+    let value = {
+      key: createDateKey(date, 'key'),
+      date: createDateKey(date),
+      type: type.name,
+      content: content, 
+      price: price
+    }
 
-    saveLocalStorage('accountBook', newAccountBook)
+    saveLocalStorage('accountBook', value)
     setConent('')
-    setPrice(null)
+    setPrice(0)
     setType(OPTIONS[0])
   }
 
