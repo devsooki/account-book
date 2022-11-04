@@ -7,10 +7,8 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-  html, #root {
-    height: 100%;
-  }
   body {
+    padding-bottom: 50px;
     height: 100%;
     background-color: #fce4ea;
   }

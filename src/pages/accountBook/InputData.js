@@ -127,6 +127,8 @@ const TypeContent = styled.ul`
   width: 65px;
   border: 1px solid #ddd;
   border-radius: 10px;
+  background-color: #fff;
+  z-index: 99;
 
   li {
     padding: 5px;
