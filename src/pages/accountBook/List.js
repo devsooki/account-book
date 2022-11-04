@@ -2,13 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { loadLocalStorage } from 'utils/localstorage';
 
-const List = () => {
+const List = ({ ...props }) => {
+  const {
+    date
+  } = props
+
   const list = loadLocalStorage('accountBook')
+  const dateFormat = () => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+
+    return `${year}${month}`;
+  }
 
   return (
     <Container>
       {
-        list && list.map(item => (
+        list && list.filter(f => f.key === dateFormat()).map(item => (
           <Content>
             <div
               className={
@@ -21,8 +31,11 @@ const List = () => {
             >
               {item.type}
             </div>
-            <div className="date">{item.date}</div>
-            <div className="content">{item.content}</div>
+            <div className="price">{item.price}원</div>
+            <div className="content">
+              <span>{item.content}</span>
+              <span className="date">{item.date}</span>
+            </div>
           </Content>
         ))
       }
@@ -33,7 +46,7 @@ const List = () => {
 export default List
 
 const Container = styled.div`
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   width: 100%;
 `
 const Content = styled.div`
@@ -56,10 +69,16 @@ const Content = styled.div`
       color: green;
     }
   }
-  .date {
-    padding: 0 20px 0 0;
+  .price {
+    width: 300px;
   }
   .content {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .date {
+      color: #666;
+      font-size: 10px;
+    }
   }
 `

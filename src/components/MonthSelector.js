@@ -4,15 +4,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { getNextMonth, getPrevMonth } from 'utils/date';
 
-const MonthSelector = () => {
-  const [date, setDate] = useState(new Date());
-
-  const dateFormat = () => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-
-    return `${year}년 ${month}월`;
-  }
+const MonthSelector = ({...props}) => {
+  const {
+    date,
+    setDate,
+    dateFormat
+  } = props
 
   const onClickPrevMonth = () => {
     setDate(getPrevMonth(date))
@@ -40,7 +37,7 @@ export default MonthSelector
 const Container = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  padding: 10px;
   width: 100%;
   min-width: 375px;
   max-width: 800px;
@@ -48,7 +45,6 @@ const Container = styled.div`
   color: #333;
   
   b {
-    margin: 0 10px;
     width: 120px;
     font-size: 20px;
     text-align: center;

@@ -1,8 +1,8 @@
 import Header from 'components/Header';
 import MonthSelector from 'components/MonthSelector';
 import AccountBook from 'pages/accountBook/AccountBook';
-import Chart from 'pages/chart/Chart';
-import React from 'react';
+import Chart from 'pages/accountBook/Chart';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import GlobalStyle from './style/GlobalStyle';
 
@@ -11,8 +11,6 @@ root.render(
   <React.StrictMode>
     <GlobalStyle />
     <Header />
-    <MonthSelector />
-    <Chart />
     <AccountBook />
   </React.StrictMode>
 );
