@@ -38,5 +38,4 @@ const Container = styled.div`
   min-width: 375px;
   max-width: 800px;
   width: 100%;
-  background-color: #fff;
 `

@@ -8,6 +8,7 @@ const List = ({ ...props }) => {
   } = props
 
   const list = loadLocalStorage('accountBook')
+
   const dateFormat = () => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -17,8 +18,14 @@ const List = ({ ...props }) => {
 
   return (
     <Container>
-      {
-        list && list.filter(f => f.key === dateFormat()).map(item => (
+      {list.filter(f => f.key === dateFormat()).length === 0 ? (
+        <EmptyContainer>
+          {date.getMonth()+1}월엔 입력된 내용이 없어요🥲
+        </EmptyContainer>
+      ) : (
+        list
+        .filter(f => f.key === dateFormat())
+        .map(item => (
           <Content>
             <div
               className={
@@ -37,7 +44,7 @@ const List = ({ ...props }) => {
               <span className="date">{item.date}</span>
             </div>
           </Content>
-        ))
+        ))) 
       }
     </Container>
   )
@@ -48,6 +55,15 @@ export default List
 const Container = styled.div`
   padding: 0 20px 20px 20px;
   width: 100%;
+  background-color: #fff;
+`
+const EmptyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #666;
+  font-size: 14px;
 `
 const Content = styled.div`
   display: flex;

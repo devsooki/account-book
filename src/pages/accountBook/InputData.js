@@ -101,7 +101,7 @@ const Container = styled.div`
   flex-direction: column;
   padding: 20px;
   width: 100%;
-  height: 100px;
+  background-color: #fff;
 `
 const InputContent = styled.div`
   display: flex;
