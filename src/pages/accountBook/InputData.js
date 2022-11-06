@@ -2,7 +2,7 @@ import { OPTIONS } from 'gloabls/option'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { createDateKey } from 'utils/date'
-import { loadLocalStorage, saveLocalStorage } from 'utils/localstorage'
+import { saveLocalStorage } from 'utils/localstorage'
 
 const InputData = () => {
   const [content, setConent] = useState('')
@@ -39,7 +39,7 @@ const InputData = () => {
       date: createDateKey(date),
       type: type.name,
       content: content, 
-      price: price
+      price: price === null ? 0 : price
     }
 
     saveLocalStorage('accountBook', value)
