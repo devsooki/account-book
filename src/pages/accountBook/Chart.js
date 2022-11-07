@@ -4,7 +4,9 @@ import styled from 'styled-components'
 const Chart = () => {
   return (
     <Container>
-      그래프영역
+      <ChartContent>
+
+      </ChartContent>
     </Container>
   )
 }
@@ -19,6 +21,17 @@ const Container = styled.div`
   min-width: 375px;
   max-width: 800px;
   width: 100%;
-  height: 300px;
+  height: 400px;
   background-color: #fff;
+`
+const ChartContent = styled.div`
+  width: 300px;
+  height: 300px;
+  background-color: yellow;
+  border-radius: 50%;
+  background: conic-gradient(
+    red 30%,
+    blue 50%,
+    green 100%
+  );
 `
