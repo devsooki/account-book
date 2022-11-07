@@ -25,8 +25,10 @@ const List = ({ ...props }) => {
       ) : (
         list
         .filter(f => f.key === dateFormat())
-        .map(item => (
-          <Content>
+        .map((item, index) => (
+          <Content
+            key={index}
+          >
             <div
               className={
                 item.type === '수입' 

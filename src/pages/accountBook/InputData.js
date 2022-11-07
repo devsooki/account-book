@@ -6,7 +6,7 @@ import { saveLocalStorage } from 'utils/localstorage'
 
 const InputData = () => {
   const [content, setConent] = useState('')
-  const [price, setPrice] = useState(null)
+  const [price, setPrice] = useState(0)
   const [isType, setIsType] = useState(false)
   const [type, setType] = useState(OPTIONS[0])
 
@@ -39,7 +39,7 @@ const InputData = () => {
       date: createDateKey(date),
       type: type.name,
       content: content, 
-      price: price === null ? 0 : price
+      price: price
     }
 
     saveLocalStorage('accountBook', value)
