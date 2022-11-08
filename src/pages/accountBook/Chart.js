@@ -5,7 +5,46 @@ const Chart = () => {
   return (
     <Container>
       <ChartContent>
-
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="beige" strokeWidth="20" />
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            fill="none"
+            stroke="green"
+            strokeWidth="20"
+            strokeDasharray={2 * Math.PI * 90 * 0.75}
+          />
+        </svg>
+      </ChartContent>
+      <ChartContent>
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="beige" strokeWidth="20" />
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            fill="none"
+            stroke="green"
+            strokeWidth="20"
+            strokeDasharray={2 * Math.PI * 90 * 0.75}
+          />
+        </svg>
+      </ChartContent>
+      <ChartContent>
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="beige" strokeWidth="20" />
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            fill="none"
+            stroke="green"
+            strokeWidth="20"
+            strokeDasharray={2 * Math.PI * 90 * 0.75}
+          />
+        </svg>
       </ChartContent>
     </Container>
   )
@@ -16,7 +55,7 @@ export default Chart
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin: 0 auto;
   min-width: 375px;
   max-width: 800px;
@@ -25,13 +64,5 @@ const Container = styled.div`
   background-color: #fff;
 `
 const ChartContent = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: yellow;
-  border-radius: 50%;
-  background: conic-gradient(
-    red 30%,
-    blue 50%,
-    green 100%
-  );
+  width: 200px;
 `
