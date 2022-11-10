@@ -1,33 +1,81 @@
 import React from 'react'
-import { PieChart } from 'react-minimal-pie-chart'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+import { loadLocalStorage } from 'utils/localstorage'
 
 const Chart = () => {
+  const chartData = [
+    {
+      label: '지출',
+      per: 0.75
+    }, {
+      label: '저축',
+      per: 0.25
+    }
+  ]
+
+
+  const list = loadLocalStorage('accountBook')
+
+
   return (
     <Container>
-      <PieChart
-        data={[
-          { title: 'One', value: 10, color: '#FF8DC7' },
-          { title: 'Two', value: 15, color: '#FFACC7' },
-          { title: 'Three', value: 20, color: '#FFDDD2' },
-        ]}
-        animate
-      />
+      {
+        chartData.map(data => (
+          <Content>
+            <Label>{data.label}</Label>
+            <svg viewBox="0 0 200 200">
+              <Circle cx="100" cy="100" r="80" fill="none" stroke="#fffad7" strokeWidth="30" />
+              <Circle
+                cx="100"
+                cy="100"
+                r="80"
+                fill="none"
+                stroke="#ff9f9f"
+                strokeWidth="30"
+                strokeDasharray={`${2 * Math.PI * 80 * 0.50} ${2 * Math.PI * 80 * 0.50}`}
+                strokeDashoffset={2 * Math.PI * 80 * 0.75}
+              />
+            </svg>
+          </Content>
+        ))
+      }
     </Container>
   )
 }
 
 export default Chart
 
+// const chartAnimate = keyframes`
+// 	0% {
+//     stroke-dasharray: 0 ${2 * Math.PI * 80};
+//   }
+// `;
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 30px 50px;
   min-width: 375px;
   max-width: 800px;
   width: 100%;
-  height: 400px;
+  height: 300px;
   background-color: #fff;
+`
+const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 250px;
+  height: 300px;
+`
+const Label = styled.div`
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+`
+const Circle = styled.circle`
+
 `

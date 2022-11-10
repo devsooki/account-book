@@ -18,12 +18,12 @@ const List = ({ ...props }) => {
 
   return (
     <Container>
-      {list.filter(f => f.key === dateFormat()).length === 0 ? (
+      {list && list.filter(f => f.key === dateFormat()).length === 0 ? (
         <EmptyContainer>
           {date.getMonth()+1}월엔 입력된 내용이 없어요🥲
         </EmptyContainer>
       ) : (
-        list
+        list && list
         .filter(f => f.key === dateFormat())
         .map((item, index) => (
           <Content
