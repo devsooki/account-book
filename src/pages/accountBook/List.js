@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { loadLocalStorage } from 'utils/localstorage';
 
@@ -7,7 +7,7 @@ const List = ({ ...props }) => {
     date
   } = props
 
-  const list = loadLocalStorage('accountBook')
+  let list = loadLocalStorage('accountBook')
 
   const dateFormat = () => {
     const year = date.getFullYear();
@@ -18,7 +18,7 @@ const List = ({ ...props }) => {
 
   return (
     <Container>
-      {list && list.filter(f => f.key === dateFormat()).length === 0 ? (
+      {list === null || (list && list.filter(f => f.key === dateFormat()).length === 0) ? (
         <EmptyContainer>
           {date.getMonth()+1}월엔 입력된 내용이 없어요🥲
         </EmptyContainer>
