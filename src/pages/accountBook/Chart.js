@@ -1,81 +1,93 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { loadLocalStorage } from 'utils/localstorage'
 
 const Chart = () => {
-  const chartData = [
-    {
-      label: '지출',
-      per: 0.75
-    }, {
-      label: '저축',
-      per: 0.25
-    }
-  ]
 
 
   const list = loadLocalStorage('accountBook')
 
+  const totalIncome = list && list.filter(f => f.type === '수입').reduce((acc, cur) => {
+    return acc + cur.price
+  }, 0)
+
+  const totalExpense = list && list.filter(f => f.type === '지출').reduce((acc, cur) => {
+    return acc + cur.price
+  }, 0)
+
+  const totalSaving = list && list.filter(f => f.type === '저축').reduce((acc, cur) => {
+    return acc + cur.price
+  }, 0)
+
+
+  const chartData = [
+    {
+      label: '수입',
+      per: 100,
+      color: 'red'
+    },
+    {
+      label: '지출',
+      per: +(totalExpense / totalIncome).toFixed(2) * 100,
+      color: 'blue'
+    }, {
+      label: '저축',
+      per: +(totalSaving / totalIncome).toFixed(2) * 100,
+      color: 'green'
+    }
+  ]
+
+  console.log( chartData)
 
   return (
     <Container>
-      {
-        chartData.map(data => (
-          <Content>
-            <Label>{data.label}</Label>
-            <svg viewBox="0 0 200 200">
-              <Circle cx="100" cy="100" r="80" fill="none" stroke="#fffad7" strokeWidth="30" />
-              <Circle
-                cx="100"
-                cy="100"
-                r="80"
-                fill="none"
-                stroke="#ff9f9f"
-                strokeWidth="30"
-                strokeDasharray={`${2 * Math.PI * 80 * 0.50} ${2 * Math.PI * 80 * 0.50}`}
-                strokeDashoffset={2 * Math.PI * 80 * 0.75}
-              />
-            </svg>
-          </Content>
-        ))
-      }
+      <Content
+        className="chart"
+      >
+        {
+          chartData.map((data, index) => (
+            <LineChart 
+              key={index}
+              per={data.per} 
+              color={data.color}
+            />
+          ))
+        }
+      </Content>
+      <Content>
+
+      </Content>
     </Container>
   )
 }
 
 export default Chart
 
-// const chartAnimate = keyframes`
-// 	0% {
-//     stroke-dasharray: 0 ${2 * Math.PI * 80};
-//   }
-// `;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
   margin: 0 auto;
-  padding: 30px 50px;
-  min-width: 375px;
-  max-width: 800px;
-  width: 100%;
+  padding: 30px;
+  width: 800px;
   height: 300px;
   background-color: #fff;
 `
 const Content = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 250px;
-  height: 300px;
-`
-const Label = styled.div`
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 13px;
-`
-const Circle = styled.circle`
+  padding-top: 50px;
+  width: 50%;
+  height: 100%;
 
+  &.chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+`
+const LineChart = styled.div`
+  width: 100px;
+  height: ${props => `${props.per}%`};
+  background-color: ${props => props.color};
+  opacity: 0.6;
 `

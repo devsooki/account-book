@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { loadLocalStorage } from 'utils/localstorage';
 
@@ -40,7 +40,7 @@ const List = ({ ...props }) => {
             >
               {item.type}
             </div>
-            <div className="price">{item.price}원</div>
+            <div className="price">{item.price.toLocaleString()}원</div>
             <div className="content">
               <span>{item.content}</span>
               <span className="date">{item.date}</span>

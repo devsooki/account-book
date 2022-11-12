@@ -35,7 +35,5 @@ export default AccountBook
 
 const Container = styled.div`
   margin: 0 auto;
-  min-width: 375px;
-  max-width: 800px;
-  width: 100%;
+  width: 800px;
 `

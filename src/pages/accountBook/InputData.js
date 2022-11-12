@@ -28,7 +28,7 @@ const InputData = () => {
     if (type === 'content') {
       setConent(value)
     } else if (type === 'price') {
-      setPrice(onlyNumber)
+      setPrice(Number(onlyNumber))
     }
   }
   
