@@ -54,8 +54,14 @@ const Chart = () => {
           ))
         }
       </Content>
-      <Content>
+      <Content
+        className="text"
+      >
+        이번달은 지출이 저축보다 많아요!<br />
+        다음달엔 조금 더 절약해볼까요?🔥<br />
 
+        이번달은 저축이 지출보다 많아요!<br />
+        참 잘했어요!✨
       </Content>
     </Container>
   )
@@ -73,16 +79,25 @@ const Container = styled.div`
   background-color: #fff;
 `
 const Content = styled.div`
-  padding-top: 50px;
+  display: flex;
+  padding: 50px 10px 0;
   width: 50%;
   height: 100%;
 
   &.chart {
-    display: flex;
     align-items: flex-end;
     justify-content: space-between;
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+  }
+
+  &.text {
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: center;
   }
 `
 const LineChart = styled.div`
