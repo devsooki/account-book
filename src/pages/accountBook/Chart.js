@@ -26,7 +26,7 @@ const Chart = () => {
     } else {
       setTextType(TEXT_TYPE[1].value)
     }
-  }, [list])
+  }, [totalExpense, totalSaving])
 
 
   const chartData = [
@@ -105,7 +105,6 @@ const Content = styled.div`
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
   }
-
   &.text {
     align-items: center;
     justify-content: center;
