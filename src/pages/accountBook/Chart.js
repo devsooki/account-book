@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { loadLocalStorage } from 'utils/localstorage'
+import { TEXT_TYPE } from 'gloabls/option'
 
 const Chart = () => {
-
+  const [textType, setTextType] = useState(TEXT_TYPE[0].value)
 
   const list = loadLocalStorage('accountBook')
 
@@ -18,6 +19,14 @@ const Chart = () => {
   const totalSaving = list && list.filter(f => f.type === '저축').reduce((acc, cur) => {
     return acc + cur.price
   }, 0)
+
+  useEffect(() => {
+    if (totalExpense > totalSaving) {
+      setTextType(TEXT_TYPE[0].value)
+    } else {
+      setTextType(TEXT_TYPE[1].value)
+    }
+  }, [list])
 
 
   const chartData = [
@@ -37,8 +46,6 @@ const Chart = () => {
     }
   ]
 
-  console.log( chartData)
-
   return (
     <Container>
       <Content
@@ -57,11 +64,19 @@ const Chart = () => {
       <Content
         className="text"
       >
-        이번달은 지출이 저축보다 많아요!<br />
-        다음달엔 조금 더 절약해볼까요?🔥<br />
-
-        이번달은 저축이 지출보다 많아요!<br />
-        참 잘했어요!✨
+        {
+          textType === TEXT_TYPE[0].value ? (
+            <>
+              이번달은 지출이 저축보다 많아요!<br />
+              다음달엔 조금 더 절약해볼까요?🔥
+            </>
+          ) : (
+            <>
+              이번달은 저축이 지출보다 많아요!<br />
+              참 잘했어요!✨
+            </>
+          )
+        }
       </Content>
     </Container>
   )

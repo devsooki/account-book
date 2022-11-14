@@ -3,3 +3,8 @@ export const OPTIONS = [
 	{ value: "expense", name: "지출" },
 	{ value: "saving", name: "저축" },
 ];
+
+export const TEXT_TYPE = [
+	{ value: "expense" },
+	{ value: "saving" }
+]
