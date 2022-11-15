@@ -54,10 +54,14 @@ const Chart = () => {
         {
           chartData.map((data, index) => (
             <LineChart 
-              key={index}
-              per={data.per} 
-              color={data.color}
-            />
+                key={index}
+                per={data.per} 
+                color={data.color}
+              >
+                <ChartLabel>
+                  {data.label}
+                </ChartLabel>
+              </LineChart>
           ))
         }
       </Content>
@@ -115,8 +119,15 @@ const Content = styled.div`
   }
 `
 const LineChart = styled.div`
+  position: relative;
   width: 100px;
   height: ${props => `${props.per}%`};
   background-color: ${props => props.color};
   opacity: 0.6;
+`
+const ChartLabel = styled.div`
+  position: absolute;
+  bottom: -20px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
 `
