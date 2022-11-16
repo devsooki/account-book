@@ -1,12 +1,16 @@
 import MonthSelector from 'components/MonthSelector';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { keyDateFormat } from 'utils/date';
+import { loadLocalStorage } from 'utils/localstorage';
 import Chart from './Chart';
 import Data from './InputData';
 import List from './List';
 
 const AccountBook = () => {
   const [date, setDate] = useState(new Date());
+
+  const list = loadLocalStorage('accountBook')
 
   const dateFormat = () => {
     const year = date.getFullYear();
@@ -22,10 +26,17 @@ const AccountBook = () => {
         setDate={setDate}
         dateFormat={dateFormat}
       />
-      <Chart />
+      {
+        list && list.filter(f => f.key === keyDateFormat(date)).length !== 0 && (
+          <Chart 
+            list={list}
+          />
+        )
+      }
       <Data />
       <List 
         date={date}
+        list={list}
       />
     </Container>
   )

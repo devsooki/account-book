@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { loadLocalStorage } from 'utils/localstorage'
 import { TEXT_TYPE } from 'gloabls/option'
 
-const Chart = () => {
+const Chart = ({ ...props }) => {
+  const {
+    list
+  } = props
   const [textType, setTextType] = useState(TEXT_TYPE[0].value)
-
-  const list = loadLocalStorage('accountBook')
 
   const totalIncome = list && list.filter(f => f.type === '수입').reduce((acc, cur) => {
     return acc + cur.price

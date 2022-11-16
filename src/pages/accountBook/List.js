@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { keyDateFormat } from 'utils/date';
 import { loadLocalStorage } from 'utils/localstorage';
 
 const List = ({ ...props }) => {
   const {
-    date
+    date,
+    list
   } = props
-
-  let list = loadLocalStorage('accountBook')
-
-  const dateFormat = () => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-
-    return `${year}${month}`;
-  }
-
   return (
     <Container>
-      {list === null || (list && list.filter(f => f.key === dateFormat()).length === 0) ? (
+      {list === null || (list && list.filter(f => f.key === keyDateFormat(date)).length === 0) ? (
         <EmptyContainer>
           {date.getMonth()+1}월엔 입력된 내용이 없어요🥲
         </EmptyContainer>
       ) : (
         list && list
-        .filter(f => f.key === dateFormat())
+        .filter(f => f.key === keyDateFormat(date))
         .map((item, index) => (
           <Content
             key={index}
