@@ -33,16 +33,19 @@ const Chart = () => {
     {
       label: '수입',
       per: 100,
-      color: 'red'
+      color: 'red',
+      price: totalIncome
     },
     {
       label: '지출',
       per: +(totalExpense / totalIncome).toFixed(2) * 100,
-      color: 'blue'
+      color: 'blue',
+      price: totalExpense
     }, {
       label: '저축',
       per: +(totalSaving / totalIncome).toFixed(2) * 100,
-      color: 'green'
+      color: 'green',
+      price: totalSaving
     }
   ]
 
@@ -58,6 +61,9 @@ const Chart = () => {
                 per={data.per} 
                 color={data.color}
               >
+                <ChartText>
+                  {data.price.toLocaleString()}원
+                </ChartText>
                 <ChartLabel>
                   {data.label}
                 </ChartLabel>
@@ -124,6 +130,12 @@ const LineChart = styled.div`
   height: ${props => `${props.per}%`};
   background-color: ${props => props.color};
   opacity: 0.6;
+`
+const ChartText = styled.div`
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
 `
 const ChartLabel = styled.div`
   position: absolute;
