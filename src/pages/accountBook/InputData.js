@@ -158,7 +158,7 @@ const Input = styled.input`
     flex: 1;
   }
   &[name="price"] {
-    width: 150px;
+    width: 200px;
     text-align: right;
   }
 `

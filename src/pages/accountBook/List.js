@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { keyDateFormat } from 'utils/date';
-import { loadLocalStorage } from 'utils/localstorage';
 
 const List = ({ ...props }) => {
   const {
     date,
     list
   } = props
+  
   return (
     <Container>
       {list === null || (list && list.filter(f => f.key === keyDateFormat(date)).length === 0) ? (
@@ -32,7 +32,10 @@ const List = ({ ...props }) => {
             >
               {item.type}
             </div>
-            <div className="price">{item.price.toLocaleString()}원</div>
+            <div className="price">
+              {item.type === '지출' && '-'}
+              {item.price.toLocaleString()}원
+            </div>
             <div className="content">
               <span>{item.content}</span>
               <span className="date">{item.date}</span>

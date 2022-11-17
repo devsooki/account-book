@@ -1,5 +1,5 @@
 import MonthSelector from 'components/MonthSelector';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { keyDateFormat } from 'utils/date';
 import { loadLocalStorage } from 'utils/localstorage';
@@ -8,16 +8,19 @@ import Data from './InputData';
 import List from './List';
 
 const AccountBook = () => {
-  const [date, setDate] = useState(new Date());
-
-  const list = loadLocalStorage('accountBook')
-
   const dateFormat = () => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
 
     return `${year}년 ${month}월`;
   }
+
+  const [date, setDate] = useState(new Date());
+  const [list, setList] = useState(loadLocalStorage('accountBook'));
+
+  useEffect(() => {
+    setList(loadLocalStorage('accountBook'))
+  }, [list])
 
   return (
     <Container>
