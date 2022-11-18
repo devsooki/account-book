@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+// utils
+import { getNextMonth, getPrevMonth } from 'utils/date';
 
 // style
 import styled from 'styled-components';
-import { getNextMonth, getPrevMonth } from 'utils/date';
 
 const MonthSelector = ({...props}) => {
   const {

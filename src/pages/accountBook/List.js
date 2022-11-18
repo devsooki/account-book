@@ -1,6 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+
+// utils
 import { keyDateFormat } from 'utils/date';
+
+// style
+import styled from 'styled-components';
 
 const List = ({ ...props }) => {
   const {

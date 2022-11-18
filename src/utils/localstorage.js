@@ -1,7 +1,6 @@
 export const saveLocalStorage = (keyName, value) => {
   const data = localStorage.getItem(keyName)
 
-
   if (!data || data === null) {
     localStorage.setItem(keyName, JSON.stringify([value]))
   } else {

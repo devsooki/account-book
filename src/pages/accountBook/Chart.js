@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
+
+// globla
 import { TEXT_TYPE } from 'gloabls/option'
+
+// style
+import styled from 'styled-components'
 
 const Chart = ({ ...props }) => {
   const {

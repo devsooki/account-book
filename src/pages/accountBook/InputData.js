@@ -1,8 +1,14 @@
-import { OPTIONS } from 'gloabls/option'
 import React, { useState } from 'react'
-import styled from 'styled-components'
+
+// global
+import { OPTIONS } from 'gloabls/option'
+
+// utils
 import { createDateKey } from 'utils/date'
 import { saveLocalStorage } from 'utils/localstorage'
+
+// style
+import styled from 'styled-components'
 
 const InputData = () => {
   const [content, setConent] = useState('')
