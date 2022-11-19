@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/account-book/static/js/main.e4f66b39.js",
+    "index.html": "/account-book/index.html",
+    "main.e4f66b39.js.map": "/account-book/static/js/main.e4f66b39.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e4f66b39.js"
+  ]
+}
